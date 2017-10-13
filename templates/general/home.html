@@ -1,17 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Significance Calculator</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 	<style type="text/css">
+		#heading{
+			text-align: center;
+			color: #4c6d48;
+		}
+		#calculator-icon{
+			font-size: 360%;
+			color:blue;
+			padding-left: 16px;
+		}
+		#calculator-form{
+			font-size: 150%;
+			padding-left: 24px;
+			border-color:  #8dad88;
+			border-radius: 9px;
+			border-style: solid;
+			border-width: 1px;
+			margin-top: 4px;
+			background-color: #cdf7c8;
+			padding-bottom: 4px;
+
+		}
 	</style>
 
 </head>
 <body>	
 	<div class='container'>
+		<div id='heading'>
+			<h1>Statistical Significance Calculator</h1>
+		</div>
 		<div class='row'>
-			<div></div>
-			<div></div>
+			<div class='col-lg-6 col-md-6'>
+				<div id='calculator-icon'><i class="fa fa-calculator fa-5x" aria-hidden="true"></i></div>
+			</div>
+			<div class='col-lg-6 col-md-6'>
+				<div id='calculator-form'>
+                    <div>
+                        <div class=''>
+
+                            <div class="">
+								<div class="">Number of Visitors</div>
+								<div class="">Control</div>
+								<div class=""><input type="number" class="" value="0" id="control_visitors"></div>
+								<div class="">Variation</div>
+								<div class=""><input type="number" class="" value="0"  id="variation_visitors"></div>
+							</div>
+                            <div class="">
+								<div class="">Number of Conversions</div>
+								<div class="">Control</div>
+								<div class=""><input type="number" class=""  value="0"  id="control_conversions"></div>
+								<div class="">Variation</div>
+								<div class=""><input type="number" class="" value="0"  id="variation_conversions"></div>
+							</div>
+                        </div>
+                    </div>
+                    <div>
+                    	<br/>
+                    </div>
+                    <div class="">
+                        <button class="btn  btn-primary" id="calculate">Calculate Significance </button>
+                    </div>
+                </div>
+			</div>
+
+
+		</div>
+		<div>
+			<h2 class="" id="significance"></h2>
 		</div>
 		
 	</div>
@@ -19,6 +79,30 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>	
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#calculate').click(function(e){
+				var control_visitors  = parseInt( $("#control_visitors").val() );
+				var variation_visitors = parseInt( $("#variation_visitors").val() );
+				var control_conversions = parseInt( $("#control_conversions").val() );
+				var variation_conversions = parseInt( $("#variation_conversions").val() );
+
+				var d = {};
+				d.control_visitors = control_visitors;
+				d.variation_visitors =  variation_visitors;
+				d.control_conversions = control_conversions;
+				d.variation_conversions =  variation_conversions;
+
+
+				$.get('calculate_significance',d,function(data){
+					
+					var significance = String( data.significance );
+
+					$("#significance").html('significance is ' + significance);
+					
+				})
+			})
+		})
+
 	</script>
 </body>
 </html>

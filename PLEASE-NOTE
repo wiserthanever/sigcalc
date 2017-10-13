@@ -1,0 +1,17 @@
+PLEASE-NOTE
+
+
+I am familiar with bitbucket and can work with it.
+I was unable to access bitbucket because of network problemes.
+So I uploaded the app to github instead.
+
+
+The link to heroku is
+	https://quiet-island-65106.herokuapp.com/
+
+
+
+ git push heroku master
+
+
+	 git push origin master

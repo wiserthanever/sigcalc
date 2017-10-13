@@ -21,5 +21,6 @@ import general.views as general_views
 
 urlpatterns = [
 	url(r'^$',general_views.home, name='home'),
+	url(r'^calculate_significance$',general_views.calculate_significance, name='home'),
     url(r'^admin/', admin.site.urls),
 ]
